@@ -10,7 +10,11 @@ This document exists to show where the pressure comes from. It does not treat th
 
 ## Why legal and policy context matters
 
-The project tracks technical changes, but those changes do not arise in a vacuum. They are often driven by laws, bills, regulatory pressure, or policy agendas that attempt to push surveillance, classification, logging, or access mechanisms into general-purpose systems.
+The project tracks technical changes, but those changes do not arise in a vacuum. They are often driven by laws, bills, regulatory pressure, or policy agendas that attempt to push surveillance, classification, logging, or access mechanisms into general-purpose systems. These pressures can target different layers of the stack. This project distinguishes between:
+
+- **OS-layer mandates** that pressure general-purpose distributions (e.g., California AB-1043).
+- **App-store mandates** that pressure the mobile application ecosystem and its account layers (e.g., Alabama HB161).
+- **Client-side scanning mandates** that push for device-side inspection (e.g., EU Chat Control).
 
 A recurring pattern matters here:
 
@@ -42,6 +46,12 @@ Within the scope of this project, it reinforces the concern that these mechanism
 Brazil Lei 15.211/2025 belongs in this document because the project scope is not limited to one jurisdiction. The project is intended to document state pressure that attempts to normalize surveillance or classification mechanisms in free software distributions.
 
 As the dossier grows, this document should preserve a structured record of how each law or proposal pressures technical systems and how those pressures differ across jurisdictions.
+
+### Alabama HB161 (2026)
+
+Enacted in February 2026, Alabama HB161 requires mobile app store providers to implement age verification and parental consent systems. While its immediate target is the mobile app ecosystem (phones and tablets running mobile operating systems) rather than general-purpose Linux distributions, it is part of the same broader surveillance and control trajectory.
+
+This law matters to the project because it shows the spread of the pattern to a different technical insertion point: the app store and account layer. Key provisions include requiring app stores to verify a user's age category using commercially available systems and to obtain verifiable parental consent for minors. This establishes a precedent for building verification and gating systems directly into software distribution channels.
 
 ### EU Chat Control and related policy pushes
 
