@@ -164,6 +164,7 @@ The tracker uses these status labels:
 - draft
 - active implementation
 - merged
+- closed unmerged
 - downstream inherited
 - downstream stripped
 - reverted
