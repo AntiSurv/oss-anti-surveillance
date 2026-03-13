@@ -34,6 +34,7 @@ The tracker uses the following labels.
 | Ubuntu desktop provisioning | [canonical/ubuntu-desktop-provision](https://github.com/canonical/ubuntu-desktop-provision) | [PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339) | draft | Writes `BirthDate` into target AccountsService data during installation | Extends the downstream integration into persisted account metadata |
 | Archinstall | [archlinux/archinstall](https://github.com/archlinux/archinstall) | [PR #4290](https://github.com/archlinux/archinstall/pull/4290) | active implementation | Adds a required birth date field during user creation and writes it into userdb | Demonstrates installer-level normalization in a major distro tool |
 | AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
+| Mobile App Ecosystem | N/A (Legislation) | [Alabama HB161 (2026)](https://legiscan.com/AL/bill/HB161/2026) | watchlist | Policy driver for verification/gating in app stores; shows pattern spreading to ecosystem layer | Establishes precedent for distribution-channel mandates, though not currently impacting Linux stack |
 
 ## Primary source links
 
