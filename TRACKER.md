@@ -6,7 +6,7 @@ Back to the front page: [README.md](README.md)
 
 This document is the operational evidence index for OSS Anti Surveillance.
 
-It records the currently known components, repositories, issues, pull requests, merge requests, status, and why each item matters. It is the main working index for current implementation activity.
+It records the currently known components, repositories, issues, pull requests, merge requests, status, and why each item matters. It is the main working index for current implementation activity. Policy-driver entries are included as a watchlist to provide context for technical work but are not automatically active Linux implementation targets.
 
 For legal and policy background, see [LAWS.md](LAWS.md). For the architecture map, see [STACK.md](STACK.md). For component descriptions, see [REPO-TARGETS.md](REPO-TARGETS.md). For removal strategy, see [REVERSIONS/README.md](REVERSIONS/README.md).
 
@@ -26,6 +26,8 @@ The tracker uses the following labels.
 
 ## Current evidence index
 
+### Active Linux implementation targets
+
 | Component | Repository | Item | Status | Why it matters | Downstream implications |
 | --- | --- | --- | --- | --- | --- |
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [PR #40954](https://github.com/systemd/systemd/pull/40954) | active implementation | Adds `birthDate` to JSON user records for age-verification-related use, normalizing age-related metadata in a core userdb path | Creates a core storage substrate that downstreams may consume or inherit |
@@ -35,11 +37,23 @@ The tracker uses the following labels.
 | Ubuntu desktop provisioning | [canonical/ubuntu-desktop-provision](https://github.com/canonical/ubuntu-desktop-provision) | [PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339) | closed unmerged | Closed unmerged after public objections and internal review | Demonstrates that downstream integration is not inevitable and can be halted before merge |
 | Archinstall | [archlinux/archinstall](https://github.com/archlinux/archinstall) | [PR #4290](https://github.com/archlinux/archinstall/pull/4290) | active implementation | Adds a required birth date field during user creation and writes it into userdb | Demonstrates installer-level normalization in a major distro tool |
 | AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
-| Mobile App Ecosystem | N/A (Legislation) | [Alabama HB161 (2026)](https://legiscan.com/AL/bill/HB161/2026) | watchlist | Policy driver for verification/gating in app stores; shows pattern spreading to ecosystem layer | Establishes precedent for distribution-channel mandates, though not currently impacting Linux stack |
 
-## Primary source links
+### Policy drivers and legal watchlist
 
-These are the primary upstream items currently tracked in this project:
+| Layer | Jurisdiction / Bill | Status | Why it matters | Downstream implications |
+| --- | --- | --- | --- | --- |
+| OS-layer | [California AB 1043](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1043) | watchlist | Direct OS-layer mandate relevant to Linux distribution architecture | Key driver for current implementation work in systemd and desktop portals |
+| OS-layer | [Colorado SB 26-051](https://leg.colorado.gov/bills/sb26-051) | watchlist | Follows the same OS-layer age-attestation and signaling model as CA | Reinforces the compliance pattern driving OS-level technical changes |
+| App-store | [Alabama HB 161](https://legiscan.com/AL/text/HB161/id/3357012) | watchlist | Enacted law showing the pattern spreading to the app-store distribution layer | Establishes precedent for distribution-channel mandates, though not yet a Linux target |
+| App-store | [Louisiana HB 570 / Act 481](https://www.legis.la.gov/Legis/BillInfo.aspx?i=248616) | watchlist | Enacted law targeting app stores, reinforcing the app-store layer pattern | Not currently a Linux OS implementation target |
+| App-store | [Utah HB 498](https://le.utah.gov/Session/2026/bills/enrolled/HB0498.pdf) | watchlist | App-store accountability model | Not currently a Linux OS implementation target |
+| App-store | [Texas SB 2420](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/SB02420E.pdf) | watchlist | Enacted but blocked; app-store model | Not currently a Linux OS implementation target |
+| App-store | [Florida SB 1722](https://www.flsenate.gov/Session/Bill/2026/1722) | watchlist | App-store accountability model | Not currently a Linux OS implementation target |
+| App-store | [Arizona HB 2920](https://www.azleg.gov/legtext/57leg/2R/bills/hb2920p.pdf) | watchlist | App-store accountability model | Not currently a Linux OS implementation target |
+
+## Primary tracked sources
+
+### Active Linux implementation targets
 
 - [systemd PR #40954](https://github.com/systemd/systemd/pull/40954)
 - [systemd Issue #40974](https://github.com/systemd/systemd/issues/40974)
@@ -48,6 +62,17 @@ These are the primary upstream items currently tracked in this project:
 - [ubuntu-desktop-provision PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339)
 - [Archinstall PR #4290](https://github.com/archlinux/archinstall/pull/4290)
 - [AccountsService MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176)
+
+### Policy drivers and legal watchlist
+
+- [California AB 1043](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1043)
+- [Colorado SB 26-051](https://leg.colorado.gov/bills/sb26-051)
+- [Alabama HB 161](https://legiscan.com/AL/text/HB161/id/3357012)
+- [Louisiana HB 570 / Act 481](https://www.legis.la.gov/Legis/BillInfo.aspx?i=248616)
+- [Utah HB 498](https://le.utah.gov/Session/2026/bills/enrolled/HB0498.pdf)
+- [Texas SB 2420](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/SB02420E.pdf)
+- [Florida SB 1722](https://www.flsenate.gov/Session/Bill/2026/1722)
+- [Arizona HB 2920](https://www.azleg.gov/legtext/57leg/2R/bills/hb2920p.pdf)
 
 ## Immediate observations
 

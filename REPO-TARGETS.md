@@ -4,7 +4,7 @@ Back to the front page: [README.md](README.md)
 
 ## Purpose
 
-This document lists the current technical targets in scope and explains why each matters within the Linux stack.
+This document lists the current technical targets in scope and explains why each matters within the Linux stack. These targets are often linked to broader legal drivers which are mapped in detail in [LAWS.md](LAWS.md).
 
 For live status, pull requests, and issues, see [TRACKER.md](TRACKER.md). For the stack model, see [STACK.md](STACK.md).
 

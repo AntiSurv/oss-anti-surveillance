@@ -44,7 +44,7 @@ The immediate concern is not one isolated patch. The concern is an architectural
 - a portal or standard API exposes it
 - applications, app stores, or services consume it
 
-The same broader pattern also appears in other policy pushes, including client-side scanning and related "lawful-access" initiatives. The underlying problem is the same: technical pressure to normalize surveillance or classification mechanisms inside user systems.
+The same broader pattern also appears in other policy pushes, including client-side scanning and related "lawful-access" initiatives. The underlying problem is the same: technical pressure to normalize surveillance or classification mechanisms inside user systems. That pressure now arrives through multiple legislative insertion points, including OS-layer mandates, app-store-layer mandates, and client-side scanning pushes.
 
 See [Current Repository Targets](REPO-TARGETS.md), [Technical Architecture](STACK.md), and [Laws and Policy Drivers](LAWS.md).
 
@@ -113,6 +113,7 @@ The highest current priorities are:
 - track and oppose standardization in portal and metadata layers
 - track and oppose normalization in core account and user record services
 - maintain a public record of downstream integration work
+- expand the legal map to track the spread of OS-layer and app-store-layer mandates across U.S. states
 - prepare downstream removal and package-level stripping strategies if upstream merges occur
 - keep the project precise, linkable, and easy to audit
 
