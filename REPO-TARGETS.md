@@ -49,6 +49,18 @@ Current upstream references:
 
 - [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176)
 
+#### ageverifyd
+
+Repository: [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
+
+Role in the stack: ageverifyd acts as a reference implementation of a standalone OS-level daemon for age verification and bracket storage.
+
+Why it matters: It demonstrates that the architecture is moving beyond theoretical discussion into ready-to-use plumbing (implementing `org.freedesktop.AgeVerification1`), designed specifically to help distributions and app stores comply with legislative mandates like California AB-1043.
+
+Current upstream references:
+
+- [Repository README](https://github.com/outerheaven199X/ageverifyd)
+
 ### Distribution / desktop integration targets
 
 #### Ubuntu desktop provisioning

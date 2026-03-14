@@ -36,6 +36,7 @@ The tracker uses the following labels.
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [Issue #40974](https://github.com/systemd/systemd/issues/40974) | closed unmerged | Closed as not planned; maintainers indicated birthDate remains preferred and ageGroup should live elsewhere via a service | Rejects one schema variant in systemd userdb, but leaves the broader service-based age-verification path open |
 | xdg-desktop-portal | [flatpak/xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal) | [PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922) | draft | App-facing portal/API normalization point for age-related querying | Makes the mechanism easier to standardize across desktop environments and applications |
 | AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
+| ageverifyd | [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd) | [README](https://github.com/outerheaven199X/ageverifyd) | active implementation | Standalone daemon implementing the proposed Linux age-verification D-Bus model | Provides reusable plumbing for normalization of age-signaling across Linux distributions and app ecosystems |
 
 #### Distribution / desktop-specific integrations
 
@@ -77,6 +78,7 @@ The tracker uses the following labels.
 - [elementary/settings-useraccounts PR #270](https://github.com/elementary/settings-useraccounts/pull/270)
 - [elementary/portals Issue #173](https://github.com/elementary/portals/issues/173)
 - [elementary/portals PR #180](https://github.com/elementary/portals/pull/180)
+- [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
 
 
 ### Policy drivers and legal watchlist
