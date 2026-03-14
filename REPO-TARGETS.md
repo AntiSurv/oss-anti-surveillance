@@ -10,7 +10,9 @@ For live status, pull requests, and issues, see [TRACKER.md](TRACKER.md). For th
 
 ## Current targets
 
-### systemd
+### Shared infrastructure targets
+
+#### systemd
 
 Repository: [systemd/systemd](https://github.com/systemd/systemd)
 
@@ -23,7 +25,7 @@ Current upstream references:
 - [PR #40954](https://github.com/systemd/systemd/pull/40954)
 - [Issue #40974](https://github.com/systemd/systemd/issues/40974)
 
-### xdg-desktop-portal
+#### xdg-desktop-portal
 
 Repository: [flatpak/xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal)
 
@@ -35,7 +37,7 @@ Current upstream references:
 
 - [PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922)
 
-### AccountsService
+#### AccountsService
 
 Repository: [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice)
 
@@ -47,7 +49,9 @@ Current upstream references:
 
 - [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176)
 
-### Ubuntu desktop provisioning
+### Distribution / desktop integration targets
+
+#### Ubuntu desktop provisioning
 
 Repository: [canonical/ubuntu-desktop-provision](https://github.com/canonical/ubuntu-desktop-provision)
 
@@ -60,7 +64,7 @@ Current upstream references:
 - [PR #1338](https://github.com/canonical/ubuntu-desktop-provision/pull/1338)
 - [PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339)
 
-### Archinstall
+#### Archinstall
 
 Repository: [archlinux/archinstall](https://github.com/archlinux/archinstall)
 
@@ -71,6 +75,32 @@ Why it matters: it shows that the collection and storage step can be pushed dire
 Current upstream references:
 
 - [PR #4290](https://github.com/archlinux/archinstall/pull/4290)
+
+#### elementary/settings-useraccounts
+
+Repository: [elementary/settings-useraccounts](https://github.com/elementary/settings-useraccounts)
+
+Role in the stack: This component is relevant because it sits in the desktop account-management and user-declaration layer. It is a direct integration point for UI related to age collection during account setup.
+
+Why it matters: This shows the surveillance and classification pattern spreading to another desktop-specific ecosystem, demonstrating that the pressure is not isolated to one or two distributions.
+
+Current upstream references:
+
+- [Issue #260](https://github.com/elementary/settings-useraccounts/issues/260)
+- [PR #270](https://github.com/elementary/settings-useraccounts/pull/270)
+
+#### elementary/portals
+
+Repository: [elementary/portals](https://github.com/elementary/portals)
+
+Role in the stack: This component is relevant because it provides a desktop-specific portal and user-information exposure layer. It can act as the bridge between stored user data and applications that consume it.
+
+Why it matters: This shows a desktop-specific implementation of the portal layer, which is a critical part of the architectural propagation path for normalizing surveillance mechanisms.
+
+Current upstream references:
+
+- [Issue #173](https://github.com/elementary/portals/issues/173)
+- [PR #180](https://github.com/elementary/portals/pull/180)
 
 ## Watchlist concept
 

@@ -28,15 +28,26 @@ The tracker uses the following labels.
 
 ### Active Linux implementation targets
 
+#### Shared upstream / common infrastructure
+
 | Component | Repository | Item | Status | Why it matters | Downstream implications |
 | --- | --- | --- | --- | --- | --- |
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [PR #40954](https://github.com/systemd/systemd/pull/40954) | active implementation | Adds `birthDate` to JSON user records for age-verification-related use, normalizing age-related metadata in a core userdb path | Creates a core storage substrate that downstreams may consume or inherit |
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [Issue #40974](https://github.com/systemd/systemd/issues/40974) | closed unmerged | Closed as not planned; maintainers indicated birthDate remains preferred and ageGroup should live elsewhere via a service | Rejects one schema variant in systemd userdb, but leaves the broader service-based age-verification path open |
 | xdg-desktop-portal | [flatpak/xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal) | [PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922) | draft | App-facing portal/API normalization point for age-related querying | Makes the mechanism easier to standardize across desktop environments and applications |
+| AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
+
+#### Distribution / desktop-specific integrations
+
+| Component | Repository | Item | Status | Why it matters | Downstream implications |
+| --- | --- | --- | --- | --- | --- |
 | Ubuntu desktop provisioning | [canonical/ubuntu-desktop-provision](https://github.com/canonical/ubuntu-desktop-provision) | [PR #1338](https://github.com/canonical/ubuntu-desktop-provision/pull/1338) | closed unmerged | Closed unmerged after discussion; linked to the related implementation path in #1339 | Shows that implementation paths can be interrupted before merge |
 | Ubuntu desktop provisioning | [canonical/ubuntu-desktop-provision](https://github.com/canonical/ubuntu-desktop-provision) | [PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339) | closed unmerged | Closed unmerged after public objections and internal review | Demonstrates that downstream integration is not inevitable and can be halted before merge |
 | Archinstall | [archlinux/archinstall](https://github.com/archlinux/archinstall) | [PR #4290](https://github.com/archlinux/archinstall/pull/4290) | active implementation | Adds a required birth date field during user creation and writes it into userdb | Demonstrates installer-level normalization in a major distro tool |
-| AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
+| elementary settings-useraccounts | [elementary/settings-useraccounts](https://github.com/elementary/settings-useraccounts) | [Issue #260](https://github.com/elementary/settings-useraccounts/issues/260) | discussion | Explicitly frames age-related account setup work as California-law compliance | Shows pressure reaching desktop account-management UI |
+| elementary settings-useraccounts | [elementary/settings-useraccounts](https://github.com/elementary/settings-useraccounts) | [PR #270](https://github.com/elementary/settings-useraccounts/pull/270) | draft | Implements age declaration UI in a desktop account-management component | Demonstrates distro/desktop integration of age declaration concepts |
+| elementary portals | [elementary/portals](https://github.com/elementary/portals) | [Issue #173](https://github.com/elementary/portals/issues/173) | discussion | Proposes account portal work in a user-information exposure layer | Creates a portal-level integration point in elementary OS |
+| elementary portals | [elementary/portals](https://github.com/elementary/portals) | [PR #180](https://github.com/elementary/portals/pull/180) | active implementation | Open multi-commit implementation of the account portal linked to issue #173 | Shows live portal-layer work in a desktop-specific integration path |
 
 ### Policy drivers and legal watchlist
 
@@ -62,6 +73,11 @@ The tracker uses the following labels.
 - [ubuntu-desktop-provision PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339)
 - [Archinstall PR #4290](https://github.com/archlinux/archinstall/pull/4290)
 - [AccountsService MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176)
+- [elementary/settings-useraccounts Issue #260](https://github.com/elementary/settings-useraccounts/issues/260)
+- [elementary/settings-useraccounts PR #270](https://github.com/elementary/settings-useraccounts/pull/270)
+- [elementary/portals Issue #173](https://github.com/elementary/portals/issues/173)
+- [elementary/portals PR #180](https://github.com/elementary/portals/pull/180)
+
 
 ### Policy drivers and legal watchlist
 
