@@ -10,7 +10,7 @@ This project exists because a line is being crossed.
 
 That line is crossed when free software distributions are pressured to collect age-related data at installation or provisioning time. It is crossed when account metadata services are repurposed to store that data. It is crossed when portals and standard APIs are designed to expose it. It is crossed when application and service ecosystems begin assuming that the operating system should provide user classification as a normal function.
 
-We reject that entire category of change.
+We reject that entire category of change. The pressure now arrives through multiple technical layers, including OS-layer age-signal mandates, app-store age-verification mandates, and client-side scanning or "lawful-access" pushes. They are all part of the same unacceptable trajectory.
 
 ## What we reject
 

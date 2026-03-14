@@ -25,35 +25,75 @@ A recurring pattern matters here:
 
 This project rejects that framing. The point of documenting the policy layer is not to help design cleaner compliance. It is to explain the pressure pathway and make the normalization attempt legible.
 
-## Current legal and policy drivers
+## U.S. state landscape
 
-### California AB-1043
+The legal pressure in the United States is not an isolated phenomenon. It represents a set of parallel experiments in pushing age verification, classification, parental-consent infrastructure, or disclosure obligations into different layers of the software stack.
 
-California AB-1043 is a central trigger for current Linux-stack implementation discussions around OS-level age verification and age signaling. Public discussions around provisioning, user records, account metadata, and app-facing APIs have repeatedly cited this law as a compliance driver.
+### OS-layer mandates
 
-Within the scope of this project, AB-1043 matters because it pressures operating-system-level components toward collecting and exposing age-related data for application or service use.
+These laws or proposals target the operating system itself, pressuring distributions to build in functionality for account-setup age collection and to provide a real-time API or signal for applications to consume.
 
-The core concern is not only the law’s text, but the implementation frame it creates. Once projects begin debating where to store the data, how to expose it, or how to package it, the discussion has already shifted away from the more important question of whether such a mechanism should exist at all.
+#### California AB-1043
 
-### Colorado SB26-051
+California AB-1043 is a central trigger for current Linux-stack implementation discussions around OS-level age verification and age signaling. Public discussions around provisioning, user records, account metadata, and app-facing APIs have repeatedly cited this law as a compliance driver. ([Official bill text](https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB1043))
 
-Colorado SB26-051 is closely associated with the same implementation pressure. It appears alongside California AB-1043 in current discussions as a parallel driver for age-related account and API work.
+Within the scope of this project, AB-1043 matters because it pressures operating-system-level components toward collecting and exposing age-related data for application or service use. The core concern is not only the law’s text, but the implementation frame it creates. Once projects begin debating where to store the data, how to expose it, or how to package it, the discussion has already shifted away from the more important question of whether such a mechanism should exist at all.
+
+#### Colorado SB 26-051
+
+Colorado SB26-051 is closely associated with the same implementation pressure. It follows the OS-layer age-attestation model and appears alongside California AB-1043 in current discussions as a parallel driver for age-related account and API work. ([Official bill page](https://leg.colorado.gov/bills/sb26-051))
 
 Within the scope of this project, it reinforces the concern that these mechanisms are not being proposed as isolated experiments, but as responses to a growing compliance pattern. That pattern matters because it encourages projects to think in terms of implementation pathways rather than categorical refusal.
 
+### App-store mandates
+
+These laws target the application distribution layer, pressuring app-store providers, account systems, and developers to implement age verification, parental consent mechanisms, and age-gating for content and downloads. They represent a different technical insertion point but are part of the same broader surveillance and control trajectory.
+
+#### Alabama HB 161
+
+Enacted in February 2026, Alabama HB161 requires mobile app store providers to implement age verification and parental consent systems. While its immediate target is the mobile app ecosystem, it is part of the same family of pressure. ([LegiScan](https://legiscan.com/AL/text/HB161/id/3357012))
+
+This law matters to the project because it shows the spread of the pattern to the app store and account layer. Key provisions include requiring app stores to verify a user's age category and obtain verifiable parental consent for minors, establishing a precedent for building verification and gating systems directly into software distribution channels.
+
+#### Louisiana HB 570 / Act 481
+
+This enacted Louisiana law regulates app stores and developers around minors’ app use, age-category data, and parental consent. ([Official bill page](https://www.legis.la.gov/Legis/BillInfo.aspx?i=248616))
+
+Like the Alabama law, it demonstrates how the policy pressure is expanding to control the application distribution layer, reinforcing the need for this project to track mandates beyond the core operating system.
+
+#### Utah HB 498
+
+This bill amends Utah's App Store Accountability Act, adding requirements around pre-installed applications and app-store/provider duties in the same family of measures. ([Official enrolled bill](https://le.utah.gov/Session/2026/bills/enrolled/HB0498.pdf))
+
+Its relevance is in showing the iterative tightening of app-store-layer regulation, confirming this as a durable and evolving pressure point.
+
+#### Texas SB 2420
+
+Texas enacted this app-store accountability model, but its enforcement was preliminarily blocked by a federal court. ([Official bill text](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/SB02420E.pdf), [Reuters](https://www.reuters.com/legal/government/us-judge-blocks-texas-app-store-age-law-meant-protect-children-2025-12-23/))
+
+It belongs in the dossier as an example of both the legislative spread and the potential for legal challenges to interrupt enforcement.
+
+#### Florida SB 1722
+
+This filed bill is an example of the App Store Accountability Act model, requiring app-store age verification, parent-linked minor accounts, and parental consent. ([Official bill page](https://www.flsenate.gov/Session/Bill/2026/1722))
+
+It serves as evidence that the app-store mandate model is not contained to a few states but is an active template for new legislation.
+
+#### Arizona HB 2920
+
+This introduced bill uses the same app-store age category data, parental consent, and developer duties model seen in other states. ([Official bill text](https://www.azleg.gov/legtext/57leg/2R/bills/hb2920p.pdf))
+
+Its presence in the dossier confirms the geographic spread and persistence of this legislative pattern.
+
+## Other jurisdictions
+
 ### Brazil Lei 15.211/2025
 
-Brazil Lei 15.211/2025 belongs in this document because the project scope is not limited to one jurisdiction. The project is intended to document state pressure that attempts to normalize surveillance or classification mechanisms in free software distributions.
+Brazil Lei 15.211/2025 belongs in this document because the project scope is not limited to one jurisdiction. The project is intended to document state pressure that attempts to normalize surveillance or classification mechanisms in free software distributions, wherever it appears.
 
-As the dossier grows, this document should preserve a structured record of how each law or proposal pressures technical systems and how those pressures differ across jurisdictions.
+As the dossier grows, this document must preserve a structured record of how different laws or proposals pressure technical systems and how those pressures differ across jurisdictions. This ensures the project remains a global resource, not a U.S.-centric one.
 
-### Alabama HB161 (2026)
-
-Enacted in February 2026, Alabama HB161 requires mobile app store providers to implement age verification and parental consent systems. While its immediate target is the mobile app ecosystem (phones and tablets running mobile operating systems) rather than general-purpose Linux distributions, it is part of the same broader surveillance and control trajectory.
-
-This law matters to the project because it shows the spread of the pattern to a different technical insertion point: the app store and account layer. Key provisions include requiring app stores to verify a user's age category using commercially available systems and to obtain verifiable parental consent for minors. This establishes a precedent for building verification and gating systems directly into software distribution channels.
-
-### EU Chat Control and related policy pushes
+## EU Chat Control and related policy pushes
 
 The broader policy context includes EU Chat Control and related "lawful-access" initiatives. These are important to this project because they show a recurring pattern: child-safety or law-enforcement rhetoric is used to normalize technical mechanisms for inspection, classification, access, or logging.
 

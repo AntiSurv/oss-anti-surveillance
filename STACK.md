@@ -19,6 +19,19 @@ Applications, app stores, or services
 
 This path matters because a surveillance mechanism does not need to appear in one dramatic component to become real. It can spread incrementally across several layers until the overall system functions as a policy-enforcement endpoint.
 
+## Regulatory insertion points
+
+Different laws and policy proposals target different layers of the technology stack. The project tracks these together because they all push toward classification, verification, gating, inspection, or control, but it is important to distinguish the technical insertion points.
+
+- **OS layer**
+  This includes provisioning flows, account metadata services, user records, and operating-system-level APIs. Mandates at this layer pressure the core distribution.
+
+- **App-store layer**
+  This includes store accounts, parental-consent infrastructure, developer-facing age/consent data, and the software distribution channel itself.
+
+- **Service / app-consumption layer**
+  This includes application-side enforcement, download gating, and launch-time age handling by individual applications that consume data from the layers above.
+
 ## Layer-by-layer explanation
 
 ### 1. Installer or provisioning flow

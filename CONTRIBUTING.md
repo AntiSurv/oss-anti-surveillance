@@ -59,6 +59,15 @@ Whenever possible, use the direct primary source:
 
 Do not leave a named tracked item unlinked when the direct source exists.
 
+### Legal and policy source standards
+
+For policy-driver entries in [LAWS.md](LAWS.md) or [TRACKER.md](TRACKER.md), use official primary sources wherever practical. The link text must accurately label the source.
+
+- **Preferred:** Official legislature bill pages, enrolled bill PDFs, or official fiscal notes. Label these accurately (e.g., "Official bill text").
+- **Acceptable:** Legislative trackers such as LegiScan may be included as supplementary links, but should not be the only source when an official source is available. Label these truthfully (e.g., "LegiScan").
+
+Policy items added to the tracker must include the bill name and jurisdiction, the technical layer targeted (e.g., OS-layer, App-store layer), current legislative status, and a direct primary source link.
+
 ## Linking standards
 
 Use direct Markdown links to primary sources wherever possible.
