@@ -90,6 +90,7 @@ Start here, then use the following documents for specific purposes:
 - [LAWS.md](LAWS.md): legal and policy drivers
 - [STACK.md](STACK.md): technical architecture and propagation path
 - [REPO-TARGETS.md](REPO-TARGETS.md): component-by-component technical targets
+- [ACTORS.md](ACTORS.md): model-bill producers, advocacy ecosystem, and public-support map
 - [REVERSIONS/README.md](REVERSIONS/README.md): removal, stripping, and reversal strategy
 - [CONTRIBUTING.md](CONTRIBUTING.md): contribution standards and evidence rules
 
@@ -185,4 +186,4 @@ Free software distributions must not be turned into surveillance infrastructure.
 
 OSS Anti Surveillance exists to document these mechanisms, track their spread, oppose their normalization, and prepare their removal where necessary. This project's repository is a public record, a technical map, and a practical starting point for reversal work.
 
-See also: [MANIFESTO.md](MANIFESTO.md), [TRACKER.md](TRACKER.md), [LAWS.md](LAWS.md), [STACK.md](STACK.md), [REPO-TARGETS.md](REPO-TARGETS.md), [REVERSIONS/README.md](REVERSIONS/README.md), [CONTRIBUTING.md](CONTRIBUTING.md)
+See also: [MANIFESTO.md](MANIFESTO.md), [TRACKER.md](TRACKER.md), [LAWS.md](LAWS.md), [STACK.md](STACK.md), [REPO-TARGETS.md](REPO-TARGETS.md), [ACTORS.md](ACTORS.md), [REVERSIONS/README.md](REVERSIONS/README.md), [CONTRIBUTING.md](CONTRIBUTING.md)
