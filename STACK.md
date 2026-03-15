@@ -4,20 +4,25 @@ Back to the front page: [README.md](README.md)
 
 ## Purpose
 
-This document describes the architecture path through which surveillance, classification, or policy-enforcement mechanisms can propagate across a Linux distribution stack.
+This document describes the architecture path through which surveillance, classification, or policy-enforcement mechanisms can propagate across a free software distribution stack.
 
 For the live evidence index, see [TRACKER.md](TRACKER.md). For component-specific descriptions, see [REPO-TARGETS.md](REPO-TARGETS.md).
 
 ## Core propagation path
 
-The currently visible path is:
+The currently visible implementation efforts are not monolithic. They represent a branching set of strategies for embedding age classification into OS-level architecture. A surveillance mechanism can spread incrementally across several layers until the overall system functions as a policy-enforcement endpoint.
 
-Installer or provisioning flow
-Account metadata service or user record storage
-Portal or standard application-facing API
-Applications, app stores, or services
+The key architectural layers and proposed vectors now include:
 
-This path matters because a surveillance mechanism does not need to appear in one dramatic component to become real. It can spread incrementally across several layers until the overall system functions as a policy-enforcement endpoint.
+- **Installer / Account-creation flow:** The point of initial data collection (e.g., `bsdinstall`, `Archinstall`, Ubuntu provisioning).
+- **Account metadata / Age storage:** The persistence layer for user age or date of birth (e.g., systemd userdb, AccountsService, or custom `/etc` files).
+- **Daemon / Helper layer:** Standalone services for managing and exposing age data (e.g., `ageverifyd`, `aged`).
+- **Portal / D-Bus / API:** The application-facing interface for querying age status (e.g., `xdg-desktop-portal`).
+- **Package manager / Repository integration:** Using the package manager to gate access to software based on age ratings (e.g., MidnightBSD `mport` proposal).
+- **Filesystem / ACL / LSM enforcement:** Lower-level proposals for enforcing access control based on age, using mechanisms like extended attributes (xattrs), Access Control Lists (ACLs), or Linux Security Modules (LSMs).
+- **File-based attestation:** Proposals for using root-owned files on the filesystem to signal age brackets, as an alternative to a D-Bus service.
+
+This path matters because it shows the problem is not a single API but a system-wide architectural shift being explored across multiple components and operating systems.
 
 ## Regulatory insertion points
 

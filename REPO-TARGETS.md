@@ -4,13 +4,13 @@ Back to the front page: [README.md](README.md)
 
 ## Purpose
 
-This document lists the current technical targets in scope and explains why each matters within the Linux stack. These targets are often linked to broader legal drivers which are mapped in detail in [LAWS.md](LAWS.md).
+This document lists the current technical targets in scope and explains why each matters. These targets are often linked to broader legal drivers which are mapped in detail in [LAWS.md](LAWS.md). It now tracks both Linux-centered implementation targets and broader free Unix-like integration paths where the same surveillance architecture is being proposed.
 
 For live status, pull requests, and issues, see [TRACKER.md](TRACKER.md). For the stack model, see [STACK.md](STACK.md).
 
 ## Current targets
 
-### Shared infrastructure targets
+### Linux: Shared infrastructure targets
 
 #### systemd
 
@@ -49,19 +49,7 @@ Current upstream references:
 
 - [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176)
 
-#### ageverifyd
-
-Repository: [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
-
-Role in the stack: ageverifyd acts as a reference implementation of a standalone OS-level daemon for age verification and bracket storage.
-
-Why it matters: It demonstrates that the architecture is moving beyond theoretical discussion into ready-to-use plumbing (implementing `org.freedesktop.AgeVerification1`), designed specifically to help distributions and app stores comply with legislative mandates like California AB-1043.
-
-Current upstream references:
-
-- [Repository README](https://github.com/outerheaven199X/ageverifyd)
-
-### Distribution / desktop integration targets
+### Linux: Distribution / desktop integration targets
 
 #### Ubuntu desktop provisioning
 
@@ -113,6 +101,35 @@ Current upstream references:
 
 - [Issue #173](https://github.com/elementary/portals/issues/173)
 - [PR #180](https://github.com/elementary/portals/pull/180)
+
+### Reference implementations / prototypes
+
+#### ageverifyd
+
+Repository: [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
+
+Role in the stack: ageverifyd acts as a reference implementation of a standalone OS-level daemon for age verification and bracket storage.
+
+Why it matters: It demonstrates that the architecture is moving beyond theoretical discussion into ready-to-use plumbing (implementing `org.freedesktop.AgeVerification1`), designed specifically to help distributions and app stores comply with legislative mandates like California AB-1043.
+
+Current upstream references:
+
+- [Repository README](https://github.com/outerheaven199X/ageverifyd)
+
+### BSD / Unix-like integration targets
+
+#### MidnightBSD age verification
+
+Repository: [MidnightBSD Project](https://www.midnightbsd.org/)
+
+Role in the stack: This work represents a complete, parallel implementation of an OS-level age verification architecture for a BSD-based operating system. It includes installer (`bsdinstall`) and user management (`adduser`) integration, dedicated helper tools (`aged`, `agectl`), and enforcement paths via the package manager (`mport`) and ACLs.
+
+Why it matters: This is critical evidence that the surveillance architecture is not a Linux-specific problem. It is a pattern spreading to other free Unix-like operating systems, using native system administration tools and concepts.
+
+Current upstream references:
+
+- [Implementation Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit)
+- [Mailing list discussion](https://lists.freedesktop.org/archives/xdg/2026-March/014777.html)
 
 ## Watchlist concept
 

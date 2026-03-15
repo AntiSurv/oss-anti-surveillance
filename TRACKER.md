@@ -26,7 +26,7 @@ The tracker uses the following labels.
 
 ## Current evidence index
 
-### Active Linux implementation targets
+### Linux implementation targets
 
 #### Shared upstream / common infrastructure
 
@@ -36,7 +36,6 @@ The tracker uses the following labels.
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [Issue #40974](https://github.com/systemd/systemd/issues/40974) | closed unmerged | Closed as not planned; maintainers indicated birthDate remains preferred and ageGroup should live elsewhere via a service | Rejects one schema variant in systemd userdb, but leaves the broader service-based age-verification path open |
 | xdg-desktop-portal | [flatpak/xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal) | [PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922) | draft | App-facing portal/API normalization point for age-related querying | Makes the mechanism easier to standardize across desktop environments and applications |
 | AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
-| ageverifyd | [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd) | [README](https://github.com/outerheaven199X/ageverifyd) | active implementation | Standalone daemon implementing the proposed Linux age-verification D-Bus model | Provides reusable plumbing for normalization of age-signaling across Linux distributions and app ecosystems |
 
 #### Distribution / desktop-specific integrations
 
@@ -49,6 +48,27 @@ The tracker uses the following labels.
 | elementary settings-useraccounts | [elementary/settings-useraccounts](https://github.com/elementary/settings-useraccounts) | [PR #270](https://github.com/elementary/settings-useraccounts/pull/270) | draft | Implements age declaration UI in a desktop account-management component | Demonstrates distro/desktop integration of age declaration concepts |
 | elementary portals | [elementary/portals](https://github.com/elementary/portals) | [Issue #173](https://github.com/elementary/portals/issues/173) | discussion | Proposes account portal work in a user-information exposure layer | Creates a portal-level integration point in elementary OS |
 | elementary portals | [elementary/portals](https://github.com/elementary/portals) | [PR #180](https://github.com/elementary/portals/pull/180) | active implementation | Open multi-commit implementation of the account portal linked to issue #173 | Shows live portal-layer work in a desktop-specific integration path |
+
+### Prototype / reference implementations
+
+| Component | Repository | Item | Status | Why it matters | Downstream implications |
+| --- | --- | --- | --- | --- | --- |
+| ageverifyd | [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd) | [README](https://github.com/outerheaven199X/ageverifyd) | active implementation | Standalone daemon implementing the proposed Linux `org.freedesktop.AgeVerification1` D-Bus model | Provides reusable plumbing for normalization of age-signaling across Linux distributions and app ecosystems, lowering the barrier to adoption |
+
+### BSD / Unix-like integrations
+
+| Component | Repository | Item | Status | Why it matters | Downstream implications |
+| --- | --- | --- | --- | --- | --- |
+| MidnightBSD | [MidnightBSD Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit) | [Mailing list post](https://lists.freedesktop.org/archives/xdg/2026-March/014777.html) | active implementation | Explicit BSD-side implementation path for age/DOB storage, installer (`bsdinstall`) and user creation (`adduser`) integration, helper tools (`aged`, `agectl`), and package manager (`mport`) / ACL-based access control | Proves the surveillance architecture is spreading beyond the Linux ecosystem into other free Unix-like operating systems |
+
+### Interface / discussion artifacts
+
+| Source | Item | Status | Why it matters | Downstream implications |
+| --- | --- | --- | --- | --- |
+| freedesktop.org | [xdg-list `AgeVerification1` proposal](https://lists.freedesktop.org/archives/xdg/2026-March/014765.html) | discussion | The primary proposal artifact for the `org.freedesktop.AgeVerification1` D-Bus interface | Represents the starting point for the D-Bus/portal implementation vector |
+| freedesktop.org | [Age Assurance Key Considerations](https://lists.freedesktop.org/archives/xdg/2026-March/014794.html) | discussion | Explores legal and technical contradictions around age-bracket storage, jurisdiction handling, and the practical consequences of conflicting state requirements | Shows the implementation discussion expanding beyond interface shape into jurisdiction logic, data-retention questions, and operational compliance assumptions |
+| freedesktop.org | [File-based protocol proposal](https://lists.freedesktop.org/archives/xdg/2026-March/014802.html) | discussion | Proposes a file/filesystem-based age attestation model as a more secure alternative to D-Bus | Shows the design space has expanded to include non-D-Bus, anti-circumvention-focused models |
+| freedesktop.org | [LSM / xattr implementation proposal](https://lists.freedesktop.org/archives/xdg/2026-March/014779.html) | discussion | Proposes using Linux Security Modules and extended attributes for enforcement | Indicates the problem is expanding to kernel-level and filesystem-level enforcement mechanisms |
 
 ### Policy drivers and legal watchlist
 
@@ -65,7 +85,7 @@ The tracker uses the following labels.
 
 ## Primary tracked sources
 
-### Active Linux implementation targets
+### Implementation targets and proposals
 
 - [systemd PR #40954](https://github.com/systemd/systemd/pull/40954)
 - [systemd Issue #40974](https://github.com/systemd/systemd/issues/40974)
@@ -79,7 +99,11 @@ The tracker uses the following labels.
 - [elementary/portals Issue #173](https://github.com/elementary/portals/issues/173)
 - [elementary/portals PR #180](https://github.com/elementary/portals/pull/180)
 - [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
-
+- [MidnightBSD Age Verification Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit)
+- [freedesktop.org `AgeVerification1` proposal thread](https://lists.freedesktop.org/archives/xdg/2026-March/014765.html)
+- [freedesktop.org Age Assurance Key Considerations thread](https://lists.freedesktop.org/archives/xdg/2026-March/014794.html)
+- [freedesktop.org File-based proposal thread](https://lists.freedesktop.org/archives/xdg/2026-March/014802.html)
+- [freedesktop.org LSM / xattr proposal thread](https://lists.freedesktop.org/archives/xdg/2026-March/014779.html)
 
 ### Policy drivers and legal watchlist
 
