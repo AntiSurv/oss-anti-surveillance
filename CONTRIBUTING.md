@@ -20,6 +20,7 @@ Use the document that matches the content.
 
 - Add implementation evidence, issues, pull requests, merge requests, and status updates to [TRACKER.md](TRACKER.md).
 - Add legal and policy background to [LAWS.md](LAWS.md).
+- Add model bills, advocacy groups, and public endorsements to [ACTORS.md](ACTORS.md).
 - Add architecture relationships and propagation paths to [STACK.md](STACK.md).
 - Add component-specific technical detail to [REPO-TARGETS.md](REPO-TARGETS.md).
 - Add removal and stripping notes to [REVERSIONS/README.md](REVERSIONS/README.md).
@@ -36,6 +37,16 @@ Every contribution should be:
 - scoped to the project mission
 - placed in the correct file
 - written in consistent terminology
+
+### Evidence quality and source distinctions
+
+This project maintains a strict distinction between different types of claims. When contributing, especially to [ACTORS.md](ACTORS.md), classify your evidence correctly:
+
+- **Primary-source facts:** Claims directly supported by primary sources such as official bill text, press releases from involved parties, court filings, or technical whitepapers published by the source organization. These are suitable for core dossier entries.
+- **Cross-source synthesis:** Claims that connect multiple primary-source facts to form a larger conclusion (e.g., "Template A and Template B are complementary"). These should be presented carefully, with all underlying sources cited, and must avoid making unsubstantiated leaps of logic.
+- **Inference and interpretation:** Claims about motive, intent, or unstated strategy (e.g., "Company X funded this to avoid Y liability"). These are high-risk claims and are not suitable for core dossier entries. They should be proposed as "research leads" and must be explicitly labeled as requiring further verification.
+
+The goal is to build a credible, auditable dossier. Stick to what can be directly verified from high-quality sources.
 
 ## Required evidence quality
 
@@ -162,4 +173,5 @@ Use high-quality Markdown. Keep headings clean, lists consistent, and prose prec
 - [LAWS.md](LAWS.md)
 - [STACK.md](STACK.md)
 - [REPO-TARGETS.md](REPO-TARGETS.md)
+- [ACTORS.md](ACTORS.md)
 - [REVERSIONS/README.md](REVERSIONS/README.md)

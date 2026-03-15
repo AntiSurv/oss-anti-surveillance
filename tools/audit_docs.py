@@ -22,6 +22,7 @@ CANONICAL_FILES = [
     "REPO-TARGETS.md",
     "CONTRIBUTING.md",
     "REVERSIONS/README.md",
+    "ACTORS.md",
 ]
 
 README_REQUIRED_LINKS = [
@@ -33,6 +34,7 @@ README_REQUIRED_LINKS = [
     "REPO-TARGETS.md",
     "REVERSIONS/README.md",
     "CONTRIBUTING.md",
+    "ACTORS.md",
 ]
 
 REQUIRED_SECTIONS = {
@@ -53,7 +55,7 @@ REQUIRED_SECTIONS = {
     ],
     "LAWS.md": [
         "Purpose",
-        "Current legal and policy drivers",
+        "U.S. state landscape",
     ],
     "STACK.md": [
         "Purpose",
@@ -71,6 +73,11 @@ REQUIRED_SECTIONS = {
     "REVERSIONS/README.md": [
         "Purpose",
         "Current strategy",
+    ],
+    "ACTORS.md": [
+        "Purpose",
+        "Why this file exists",
+        "Core actors and ecosystem",
     ],
 }
 
