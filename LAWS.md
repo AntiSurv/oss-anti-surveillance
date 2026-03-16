@@ -27,7 +27,7 @@ This project rejects that framing. The point of documenting the policy layer is 
 
 ## U.S. state landscape
 
-The legal pressure in the United States is not an isolated phenomenon. It represents a set of parallel experiments in pushing age verification, classification, parental-consent infrastructure, or disclosure obligations into different layers of the software stack.
+The legal pressure in the United States is not an isolated phenomenon. It represents a set of parallel experiments in pushing age verification, classification, parental-consent infrastructure, or disclosure obligations into different layers of the software stack. Recent research and source comparisons suggest that these bills are not random, but often fall into recurring legislative models promoted by specific advocacy ecosystems. The two most prominent models are **OS-layer age assurance mandates** and **app-store accountability mandates**, each targeting a different technical layer with a different compliance burden.
 
 ### OS-layer mandates
 

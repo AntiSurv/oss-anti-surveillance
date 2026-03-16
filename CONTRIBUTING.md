@@ -48,6 +48,14 @@ This project maintains a strict distinction between different types of claims. W
 
 The goal is to build a credible, auditable dossier. Stick to what can be directly verified from high-quality sources.
 
+### External investigations and secondary research
+
+The project may reference external investigations or secondary research projects when they provide valuable discovery, context, or synthesis. When using such sources:
+
+- They can be used for research leads, but their strongest conclusions must not be promoted into core dossier claims unless independently anchored in primary or high-quality source material.
+- Contributors must distinguish clearly between what an external project claims and what this project has independently verified.
+- Research leads derived from secondary investigations should be explicitly labeled as requiring further verification, typically in a dedicated section of the relevant document.
+
 ## Required evidence quality
 
 When adding a new tracker entry or updating an existing one, include:
