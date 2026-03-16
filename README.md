@@ -66,7 +66,7 @@ OSS Anti Surveillance has four core functions.
 
 ### 1. Document
 
-This project records relevant laws, policy drivers, mailing-list discussions, issues, pull requests, merge requests, and implementation paths across the Linux stack.
+This project records relevant laws, policy drivers, mailing-list discussions, issues, pull requests, merge requests, and implementation paths across the Linux stack. It tracks three distinct but related layers: the laws themselves, the actors and policy ecosystems that produce them, and the technical implementation that results.
 
 ### 2. Track
 

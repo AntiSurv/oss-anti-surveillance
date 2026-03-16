@@ -28,6 +28,12 @@ This toolkit includes:
 
 This work matters because it provides direct evidence that the OS-level model being implemented in laws like California's AB 1043 is not an isolated improvisation, but part of a pre-existing, reusable policy and technical template.
 
+### Digital Childhood Alliance (DCA)
+
+The Digital Childhood Alliance is a key advocacy coalition that publicly promotes app-store accountability legislation. It has been described as a coalition of over 50 child advocacy organizations and has testified in favor of these bills across multiple states.
+
+This actor matters because it represents a major advocacy vehicle for the app-store legislative track. Public reporting by outlets such as Bloomberg has indicated that Meta Platforms, Inc. is a funder of the DCA. The precise legal and registration structure of the DCA is a subject of ongoing external research.
+
 ### California AB 1043 support ecosystem
 
 California's enacted AB 1043, which requires OS providers and app stores to provide an age-signal mechanism, received public support from major technology companies.
@@ -41,14 +47,26 @@ According to a [press release](https://a14.asmdc.org/press-releases/20250909-goo
 
 This matters because it confirms that major platform actors, including those this project tracks in other contexts, publicly endorsed the OS-level signal model in California, lending significant weight to its passage and normalization. The [enacted bill text](https://leginfo.legislature.ca.gov/faces/billVersionsCompareClient.xhtml?bill_id=202520260AB1043) aligns with this model, requiring an interface for users to provide their birth date or age and for applications to request a "signal" from the OS or app store.
 
-### Template ecosystem context
+## Legislative template ecosystems
 
-While this project focuses on verifiable primary sources, it is important to note the broader context of competing and complementary legislative templates. Evidence suggests at least two distinct models are being promoted in U.S. states:
+The legal pressure for OS-level and app-store-level age verification is not arising from random, isolated bills. Evidence points to at least two distinct, recurring legislative models being promoted by different advocacy ecosystems.
 
-1.  **OS-layer mandates** (e.g., California AB 1043), which place the implementation burden on operating system providers.
-2.  **App-store mandates** (e.g., Texas SB 2420), which place the burden on app store providers like Apple and Google.
+### OS-layer age assurance mandates
 
-The Texas app-store law was [preliminarily blocked by a federal court](https://www.reuters.com/legal/government/us-judge-blocks-texas-app-store-age-law-meant-protect-children-2025-12-23/) before taking effect, showing that legal outcomes are not uniform across different template families. This project tracks both models because they are part of the same overall push toward age-verification infrastructure.
+This model, exemplified by California's AB-1043, places the compliance burden on the operating system provider. The core architecture involves the OS collecting a user's age and providing a standardized signal for applications to consume. This approach is promoted by organizations like the International Centre for Missing & Exploited Children (ICMEC).
+
+### App-store accountability mandates
+
+This model, seen in laws like the one passed in Louisiana, places the compliance burden on app store providers like Apple and Google. The core architecture involves the app store gating downloads and in-app purchases based on verifiable parental consent. This approach is promoted by coalitions such as the Digital Childhood Alliance.
+
+## Related external research
+
+This project is aware of external investigations into the policy and lobbying ecosystem surrounding these legislative efforts. The TBOTE Project, for example, provides deep-dive research into lobbying records, funding structures, and actor relationships.
+
+- **TBOTE Project Home:** `https://tboteproject.com/`
+- **TBOTE Research Repository:** `https://tboteproject.com/git/hekate/attestation-findings`
+
+OSS Anti Surveillance may use such projects for discovery and contextual analysis, but will continue to anchor its own core dossier claims in direct legal, technical, and primary-source evidence, per the project's contribution standards.
 
 ## Research leads requiring further verification
 
