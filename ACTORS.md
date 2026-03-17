@@ -59,6 +59,14 @@ This model, exemplified by California's AB-1043, places the compliance burden on
 
 This model, seen in laws like the one passed in Louisiana, places the compliance burden on app store providers like Apple and Google. The core architecture involves the app store gating downloads and in-app purchases based on verifiable parental consent. This approach is promoted by coalitions such as the Digital Childhood Alliance.
 
+## Scientific and technical opposition
+
+Scientific and technical opposition to age-verification mandates has also become more explicit. An [open letter](https://csa-scientist-open-letter.org/ageverif-Feb2026) signed by hundreds of researchers warns that age-assurance initiatives may cause more harm than good, can create censorship-enabling infrastructure, are frequently easy to bypass, and would impose major privacy costs. The letter is especially relevant to this project because it explicitly warns against browser- and OS-level enforcement models that would give software manufacturers greater control over what users can access, and it calls for a moratorium until scientific consensus exists on feasibility, benefits, and harms.
+
+See also: [Politico coverage](https://www.politico.eu/article/age-check-social-media-scientist-warning/) and [Reason coverage](https://reason.com/2026/03/04/computer-scientists-caution-against-internet-age-verification-mandates/).
+
+This matters because it confirms opposition is not merely political or activist, but comes from technical and scientific experts and directly addresses the kinds of OS-level enforcement models this project tracks.
+
 ## Related external research
 
 This project is aware of external investigations into the policy and lobbying ecosystem surrounding these legislative efforts. The TBOTE Project, for example, provides deep-dive research into lobbying records, funding structures, and actor relationships.
