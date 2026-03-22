@@ -34,6 +34,7 @@ The tracker uses the following labels.
 | --- | --- | --- | --- | --- | --- |
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [PR #40954](https://github.com/systemd/systemd/pull/40954) | merged | Adds `birthDate` to JSON user records; the storage substrate is no longer hypothetical and has merged upstream | Creates an upstream identity-data substrate that downstreams may inherit unless actively stripped; raises urgency for containment and increases risk of follow-on consumption |
 | systemd | [systemd/systemd](https://github.com/systemd/systemd) | [Issue #40974](https://github.com/systemd/systemd/issues/40974) | closed unmerged | Closed as not planned; maintainers indicated birthDate remains preferred and ageGroup should live elsewhere via a service | Rejects one schema variant in systemd userdb, but leaves the broader service-based age-verification path open |
+| systemd | [systemd/systemd](https://github.com/systemd/systemd) | [PR #41179](https://github.com/systemd/systemd/pull/41179) | closed unmerged | Direct upstream attempt to revert the merged `birthDate` field. The maintainer response explicitly defended the change as an optional schema field rather than a policy engine, making the current upstream rationale explicit. | Clarifies the upstream position that critics and downstream packagers must now rebut if they oppose the field’s continued normalization and spread. |
 | xdg-desktop-portal | [flatpak/xdg-desktop-portal](https://github.com/flatpak/xdg-desktop-portal) | [PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922) | draft | App-facing portal/API normalization point for age-related querying | Makes the mechanism easier to standardize across desktop environments and applications |
 | AccountsService | [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice) | [MR !176](https://gitlab.freedesktop.org/accountsservice/accountsservice/-/merge_requests/176) | discussion | Referenced by related work as a storage and D-Bus layer for `BirthDate` | Represents a likely account metadata layer in the wider stack |
 
@@ -89,6 +90,7 @@ The tracker uses the following labels.
 
 - [systemd PR #40954](https://github.com/systemd/systemd/pull/40954)
 - [systemd Issue #40974](https://github.com/systemd/systemd/issues/40974)
+- [systemd PR #41179](https://github.com/systemd/systemd/pull/41179)
 - [xdg-desktop-portal PR #1922](https://github.com/flatpak/xdg-desktop-portal/pull/1922)
 - [ubuntu-desktop-provision PR #1338](https://github.com/canonical/ubuntu-desktop-provision/pull/1338)
 - [ubuntu-desktop-provision PR #1339](https://github.com/canonical/ubuntu-desktop-provision/pull/1339)
