@@ -1,0 +1,415 @@
+From 304bf7f59677c57770204bb91260934d54ebaac2 Mon Sep 17 00:00:00 2001
+From: Thiago Camargo <thiagocmc@proton.me>
+Date: Sun, 22 Mar 2026 02:26:25 +0100
+Subject: [PATCH] Revert "userdb: add birthDate field to JSON user records
+ (#40954)"
+
+This reverts commit acb6624fa19ddd68f9433fb0838db119fe18c3ed, reversing
+changes made to ba1caf070f9a8ff8301ea0933bdab1149036d1fd.
+---
+ docs/USER_RECORD.md                |  3 --
+ man/homectl.xml                    | 10 ------
+ src/basic/time-util.c              | 48 -------------------------
+ src/basic/time-util.h              | 18 ----------
+ src/home/homectl.c                 | 19 ----------
+ src/shared/user-record-show.c      |  2 --
+ src/shared/user-record.c           | 27 +-------------
+ src/shared/user-record.h           |  3 --
+ src/sysupdate/sysupdate-resource.c | 20 +++++++++--
+ src/test/test-time-util.c          | 58 ------------------------------
+ src/test/test-user-record.c        |  9 -----
+ 11 files changed, 18 insertions(+), 199 deletions(-)
+
+diff --git a/docs/USER_RECORD.md b/docs/USER_RECORD.md
+index 5335e145b5..9d6d8c1d03 100644
+--- a/docs/USER_RECORD.md
++++ b/docs/USER_RECORD.md
+@@ -273,9 +273,6 @@ This must be a string, and should follow the semantics defined in the
+ It's probably wise to use a location string processable by geo-location subsystems, but this is not enforced nor required.
+ Example: `Berlin, Germany` or `Basement, Room 3a`.
+ 
+-`birthDate` → A string in ISO 8601 calendar date format (`YYYY-MM-DD`) indicating the user's date
+-of birth. The earliest representable year is 1900. This field is optional.
+-
+ `disposition` → A string, one of `intrinsic`, `system`, `dynamic`, `regular`,
+ `container`, `foreign`, `reserved`. If specified clarifies the disposition of the user,
+ i.e. the context it is defined in.
+diff --git a/man/homectl.xml b/man/homectl.xml
+index bb827d1e6b..a59efd7112 100644
+--- a/man/homectl.xml
++++ b/man/homectl.xml
+@@ -366,16 +366,6 @@
+         <xi:include href="version-info.xml" xpointer="v245"/></listitem>
+       </varlistentry>
+ 
+-      <varlistentry>
+-        <term><option>--birth-date=<optional><replaceable>DATE</replaceable></optional></option></term>
+-
+-        <listitem><para>Takes a birth date for the user in ISO 8601 calendar date format
+-        (<literal>YYYY-MM-DD</literal>). The earliest representable year is 1900. If an empty string is
+-        passed the birth date is reset to unset.</para>
+-
+-        <xi:include href="version-info.xml" xpointer="v261"/></listitem>
+-      </varlistentry>
+-
+       <varlistentry>
+         <term><option>--icon-name=<replaceable>ICON</replaceable></option></term>
+ 
+diff --git a/src/basic/time-util.c b/src/basic/time-util.c
+index 1e426bb8f9..5dd00af952 100644
+--- a/src/basic/time-util.c
++++ b/src/basic/time-util.c
+@@ -1892,51 +1892,3 @@ TimestampStyle timestamp_style_from_string(const char *s) {
+                 return TIMESTAMP_US_UTC;
+         return t;
+ }
+-
+-int parse_calendar_date_full(const char *s, bool allow_pre_epoch, usec_t *ret_usec, struct tm *ret_tm) {
+-        struct tm parsed_tm = {}, copy_tm;
+-        const char *k;
+-        int r;
+-
+-        assert(s);
+-
+-        k = strptime(s, "%Y-%m-%d", &parsed_tm);
+-        if (!k || *k)
+-                return -EINVAL;
+-
+-        copy_tm = parsed_tm;
+-
+-        usec_t usec = USEC_INFINITY;
+-
+-        if (allow_pre_epoch) {
+-                /* For birth dates we use timegm() directly since we need to accept pre-epoch dates.
+-                 * timegm() returns (time_t) -1 both on error and for one second before the epoch.
+-                 * Initialize wday to -1 beforehand: if it remains -1 after the call, it's a genuine
+-                 * error; if timegm() changed it, the date was successfully normalized. */
+-                copy_tm.tm_wday = -1;
+-                if (timegm(&copy_tm) == (time_t) -1 && copy_tm.tm_wday == -1)
+-                        return -EINVAL;
+-        } else {
+-                r = mktime_or_timegm_usec(&copy_tm, /* utc= */ true, &usec);
+-                if (r < 0)
+-                        return r;
+-        }
+-
+-        /* Refuse non-normalized dates, e.g. Feb 30 */
+-        if (copy_tm.tm_mday != parsed_tm.tm_mday ||
+-            copy_tm.tm_mon  != parsed_tm.tm_mon  ||
+-            copy_tm.tm_year != parsed_tm.tm_year)
+-                return -EINVAL;
+-
+-        if (ret_usec)
+-                *ret_usec = usec;
+-        if (ret_tm) {
+-                /* Reset to unset, then fill in only the date fields we parsed and validated */
+-                *ret_tm = BIRTH_DATE_UNSET;
+-                ret_tm->tm_mday = parsed_tm.tm_mday;
+-                ret_tm->tm_mon = parsed_tm.tm_mon;
+-                ret_tm->tm_year = parsed_tm.tm_year;
+-        }
+-
+-        return 0;
+-}
+diff --git a/src/basic/time-util.h b/src/basic/time-util.h
+index 5b6a524c48..bde0b02d03 100644
+--- a/src/basic/time-util.h
++++ b/src/basic/time-util.h
+@@ -1,7 +1,6 @@
+ /* SPDX-License-Identifier: LGPL-2.1-or-later */
+ #pragma once
+ 
+-#include <limits.h>
+ #include <time.h>
+ 
+ #include "basic-forward.h"
+@@ -182,23 +181,6 @@ const char* etc_localtime(void);
+ int mktime_or_timegm_usec(struct tm *tm, bool utc, usec_t *ret);
+ int localtime_or_gmtime_usec(usec_t t, bool utc, struct tm *ret);
+ 
+-int parse_calendar_date_full(const char *s, bool allow_pre_epoch, usec_t *ret_usec, struct tm *ret_tm);
+-
+-static inline int parse_calendar_date(const char *s, usec_t *ret) {
+-        return parse_calendar_date_full(s, /* allow_pre_epoch= */ false, ret, NULL);
+-}
+-
+-#define BIRTH_DATE_UNSET                        \
+-        (const struct tm) {                     \
+-                .tm_year = INT_MIN,             \
+-        }
+-
+-#define BIRTH_DATE_IS_SET(tm) ((tm).tm_year != INT_MIN)
+-
+-static inline int parse_birth_date(const char *s, struct tm *ret) {
+-        return parse_calendar_date_full(s, /* allow_pre_epoch= */ true, NULL, ret);
+-}
+-
+ uint32_t usec_to_jiffies(usec_t usec);
+ usec_t jiffies_to_usec(uint32_t jiffies);
+ 
+diff --git a/src/home/homectl.c b/src/home/homectl.c
+index db4e6639d5..64678f239b 100644
+--- a/src/home/homectl.c
++++ b/src/home/homectl.c
+@@ -3958,7 +3958,6 @@ static int help(void) {
+                "     --alias=ALIAS             Define alias usernames for this account\n"
+                "     --email-address=EMAIL     Email address for user\n"
+                "     --location=LOCATION       Set location of user on earth\n"
+-               "     --birth-date=[DATE]       Set user birth date (YYYY-MM-DD)\n"
+                "     --icon-name=NAME          Icon name for user\n"
+                "  -d --home-dir=PATH           Home directory\n"
+                "  -u --uid=UID                 Numeric UID for user\n"
+@@ -4127,7 +4126,6 @@ static int parse_argv(int argc, char *argv[]) {
+                 ARG_LOCKED,
+                 ARG_SSH_AUTHORIZED_KEYS,
+                 ARG_LOCATION,
+-                ARG_BIRTH_DATE,
+                 ARG_ICON_NAME,
+                 ARG_PASSWORD_HINT,
+                 ARG_NICE,
+@@ -4214,7 +4212,6 @@ static int parse_argv(int argc, char *argv[]) {
+                 { "alias",                        required_argument, NULL, ARG_ALIAS                       },
+                 { "email-address",                required_argument, NULL, ARG_EMAIL_ADDRESS               },
+                 { "location",                     required_argument, NULL, ARG_LOCATION                    },
+-                { "birth-date",                   required_argument, NULL, ARG_BIRTH_DATE                  },
+                 { "password-hint",                required_argument, NULL, ARG_PASSWORD_HINT               },
+                 { "icon-name",                    required_argument, NULL, ARG_ICON_NAME                   },
+                 { "home-dir",                     required_argument, NULL, 'd'                             }, /* Compatible with useradd(8) */
+@@ -4428,22 +4425,6 @@ static int parse_argv(int argc, char *argv[]) {
+                         break;
+                 }
+ 
+-                case ARG_BIRTH_DATE:
+-                        if (isempty(optarg)) {
+-                                r = drop_from_identity("birthDate");
+-                                if (r < 0)
+-                                        return r;
+-                        } else {
+-                                r = parse_birth_date(optarg, /* ret= */ NULL);
+-                                if (r < 0)
+-                                        return log_error_errno(r, "Invalid birth date (expected YYYY-MM-DD): %s", optarg);
+-
+-                                r = parse_string_field(&arg_identity_extra, "birthDate", optarg);
+-                                if (r < 0)
+-                                        return r;
+-                        }
+-                        break;
+-
+                 case ARG_CIFS_SERVICE:
+                         if (!isempty(optarg)) {
+                                 r = parse_cifs_service(optarg, /* ret_host= */ NULL, /* ret_service= */ NULL, /* ret_path= */ NULL);
+diff --git a/src/shared/user-record-show.c b/src/shared/user-record-show.c
+index 11edf2557c..a43328c9fe 100644
+--- a/src/shared/user-record-show.c
++++ b/src/shared/user-record-show.c
+@@ -342,8 +342,6 @@ void user_record_show(UserRecord *hr, bool show_full_group_info) {
+                 printf("       Email: %s\n", hr->email_address);
+         if (hr->location)
+                 printf("    Location: %s\n", hr->location);
+-        if (BIRTH_DATE_IS_SET(hr->birth_date))
+-                printf("  Birth Date: %04d-%02d-%02d\n", hr->birth_date.tm_year + 1900, hr->birth_date.tm_mon + 1, hr->birth_date.tm_mday);
+         if (hr->password_hint)
+                 printf(" Passw. Hint: %s\n", hr->password_hint);
+         if (hr->icon_name)
+diff --git a/src/shared/user-record.c b/src/shared/user-record.c
+index 4dfb2c72d7..c65bab4ff4 100644
+--- a/src/shared/user-record.c
++++ b/src/shared/user-record.c
+@@ -46,7 +46,6 @@ UserRecord* user_record_new(void) {
+                 .nice_level = INT_MAX,
+                 .not_before_usec = UINT64_MAX,
+                 .not_after_usec = UINT64_MAX,
+-                .birth_date = BIRTH_DATE_UNSET,
+                 .locked = -1,
+                 .storage = _USER_STORAGE_INVALID,
+                 .access_mode = MODE_INVALID,
+@@ -418,28 +417,6 @@ static int json_dispatch_filename_or_path(const char *name, sd_json_variant *var
+         return 0;
+ }
+ 
+-static int json_dispatch_birth_date(const char *name, sd_json_variant *variant, sd_json_dispatch_flags_t flags, void *userdata) {
+-        struct tm *ret = ASSERT_PTR(userdata);
+-        const char *s;
+-        int r;
+-
+-        if (sd_json_variant_is_null(variant)) {
+-                *ret = BIRTH_DATE_UNSET;
+-                return 0;
+-        }
+-
+-        if (!sd_json_variant_is_string(variant))
+-                return json_log(variant, flags, SYNTHETIC_ERRNO(EINVAL), "JSON field '%s' is not a string.", strna(name));
+-
+-        s = sd_json_variant_string(variant);
+-
+-        r = parse_birth_date(s, ret);
+-        if (r < 0)
+-                return json_log(variant, flags, r, "JSON field '%s' is not a valid ISO 8601 date (expected YYYY-MM-DD).", strna(name));
+-
+-        return 0;
+-}
+-
+ static int json_dispatch_home_directory(const char *name, sd_json_variant *variant, sd_json_dispatch_flags_t flags, void *userdata) {
+         char **s = userdata;
+         const char *n;
+@@ -1523,8 +1500,7 @@ int user_group_record_mangle(
+                        /* Personally Identifiable Information (PII) — avoid leaking in logs */
+                        "realName",
+                        "location",
+-                       "emailAddress",
+-                       "birthDate")
++                       "emailAddress")
+                 sd_json_variant_sensitive(sd_json_variant_by_key(v, key));
+ 
+         /* Check if we have the special sections and if they match our flags set */
+@@ -1619,7 +1595,6 @@ int user_record_load(UserRecord *h, sd_json_variant *v, UserRecordLoadFlags load
+                 { "emailAddress",               SD_JSON_VARIANT_STRING,        sd_json_dispatch_string,              offsetof(UserRecord, email_address),                 SD_JSON_STRICT },
+                 { "iconName",                   SD_JSON_VARIANT_STRING,        sd_json_dispatch_string,              offsetof(UserRecord, icon_name),                     SD_JSON_STRICT },
+                 { "location",                   SD_JSON_VARIANT_STRING,        sd_json_dispatch_string,              offsetof(UserRecord, location),                      0              },
+-                { "birthDate",                  SD_JSON_VARIANT_STRING,        json_dispatch_birth_date,             offsetof(UserRecord, birth_date),                    0              },
+                 { "disposition",                SD_JSON_VARIANT_STRING,        json_dispatch_user_disposition,       offsetof(UserRecord, disposition),                   0              },
+                 { "lastChangeUSec",             _SD_JSON_VARIANT_TYPE_INVALID, sd_json_dispatch_uint64,              offsetof(UserRecord, last_change_usec),              0              },
+                 { "lastPasswordChangeUSec",     _SD_JSON_VARIANT_TYPE_INVALID, sd_json_dispatch_uint64,              offsetof(UserRecord, last_password_change_usec),     0              },
+diff --git a/src/shared/user-record.h b/src/shared/user-record.h
+index 4eb35d43e4..c3d52d2bd7 100644
+--- a/src/shared/user-record.h
++++ b/src/shared/user-record.h
+@@ -1,8 +1,6 @@
+ /* SPDX-License-Identifier: LGPL-2.1-or-later */
+ #pragma once
+ 
+-#include <time.h>
+-
+ #include "sd-id128.h"
+ 
+ #include "bitfield.h"
+@@ -268,7 +266,6 @@ typedef struct UserRecord {
+         char *password_hint;
+         char *icon_name;
+         char *location;
+-        struct tm birth_date;
+ 
+         char *blob_directory;
+         Hashmap *blob_manifest;
+diff --git a/src/sysupdate/sysupdate-resource.c b/src/sysupdate/sysupdate-resource.c
+index ba1842b2d6..1cc48201ef 100644
+--- a/src/sysupdate/sysupdate-resource.c
++++ b/src/sysupdate/sysupdate-resource.c
+@@ -433,10 +433,24 @@ static int process_magic_file(
+         if (iovec_memcmp(&IOVEC_MAKE(expected_hash, sizeof(expected_hash)), hash) != 0)
+                 log_warning("Hash of best before marker file '%s' has unexpected value, proceeding anyway.", fn);
+ 
++        struct tm parsed_tm = {};
++        const char *n = strptime(e, "%Y-%m-%d", &parsed_tm);
++        if (!n || *n != 0) {
++                /* Doesn't parse? Then it's not a best-before date */
++                log_warning("Found best before marker with an invalid date, ignoring: %s", fn);
++                return 0;
++        }
++
++        struct tm copy_tm = parsed_tm;
+         usec_t best_before;
+-        r = parse_calendar_date(e, &best_before);
+-        if (r < 0) {
+-                log_warning_errno(r, "Found best before marker with an invalid date, ignoring: %s", fn);
++        r = mktime_or_timegm_usec(&copy_tm, /* utc= */ true, &best_before);
++        if (r < 0)
++                return log_error_errno(r, "Failed to convert best before time: %m");
++        if (copy_tm.tm_mday != parsed_tm.tm_mday ||
++            copy_tm.tm_mon != parsed_tm.tm_mon ||
++            copy_tm.tm_year != parsed_tm.tm_year) {
++                /* date was not normalized? (e.g. "30th of feb") */
++                log_warning("Found best before marker with a non-normalized data, ignoring: %s", fn);
+                 return 0;
+         }
+ 
+diff --git a/src/test/test-time-util.c b/src/test/test-time-util.c
+index 04da9891cb..842f61119c 100644
+--- a/src/test/test-time-util.c
++++ b/src/test/test-time-util.c
+@@ -1281,62 +1281,4 @@ static int intro(void) {
+         return EXIT_SUCCESS;
+ }
+ 
+-TEST(parse_calendar_date) {
+-        usec_t usec;
+-
+-        /* Valid dates */
+-        ASSERT_OK(parse_calendar_date("2000-01-01", &usec));
+-        ASSERT_OK(parse_calendar_date("1970-01-01", &usec));
+-        ASSERT_EQ(usec, 0u); /* epoch */
+-        ASSERT_OK(parse_calendar_date("2000-02-29", &usec)); /* leap year */
+-
+-        /* NULL ret is allowed (validation only) */
+-        ASSERT_OK(parse_calendar_date("2000-06-15", NULL));
+-
+-        /* Non-normalized dates */
+-        ASSERT_ERROR(parse_calendar_date("2023-02-29", &usec), EINVAL); /* not a leap year */
+-        ASSERT_ERROR(parse_calendar_date("2023-04-31", &usec), EINVAL); /* April has 30 days */
+-        ASSERT_ERROR(parse_calendar_date("2023-13-01", &usec), EINVAL); /* month 13 */
+-        ASSERT_ERROR(parse_calendar_date("2023-00-01", &usec), EINVAL); /* month 0 */
+-
+-        /* Malformed input */
+-        ASSERT_ERROR(parse_calendar_date("", &usec), EINVAL);
+-        ASSERT_ERROR(parse_calendar_date("not-a-date", &usec), EINVAL);
+-        ASSERT_ERROR(parse_calendar_date("2023-06-15T00:00:00", &usec), EINVAL); /* trailing time */
+-        ASSERT_ERROR(parse_calendar_date("2023/06/15", &usec), EINVAL); /* wrong separator */
+-        ASSERT_ERROR(parse_calendar_date("06-15-2023", &usec), EINVAL); /* wrong order */
+-}
+-
+-TEST(parse_birth_date) {
+-        struct tm tm;
+-
+-        /* Valid dates */
+-        ASSERT_OK(parse_birth_date("2000-06-15", &tm));
+-        ASSERT_EQ(tm.tm_year, 100);  /* 2000 - 1900 */
+-        ASSERT_EQ(tm.tm_mon, 5);     /* June, 0-indexed */
+-        ASSERT_EQ(tm.tm_mday, 15);
+-
+-        /* Pre-epoch dates */
+-        ASSERT_OK(parse_birth_date("1960-03-25", &tm));
+-        ASSERT_EQ(tm.tm_year, 60);
+-        ASSERT_EQ(tm.tm_mon, 2);
+-        ASSERT_EQ(tm.tm_mday, 25);
+-
+-        /* NULL ret is allowed (validation only) */
+-        ASSERT_OK(parse_birth_date("2000-01-01", NULL));
+-
+-        /* Non-date fields should not be relied upon */
+-        ASSERT_OK(parse_birth_date("2000-06-15", &tm));
+-        ASSERT_FALSE(BIRTH_DATE_IS_SET(BIRTH_DATE_UNSET));
+-
+-        /* Non-normalized dates */
+-        ASSERT_ERROR(parse_birth_date("2023-02-29", &tm), EINVAL);
+-        ASSERT_ERROR(parse_birth_date("2023-04-31", &tm), EINVAL);
+-
+-        /* Malformed input */
+-        ASSERT_ERROR(parse_birth_date("", &tm), EINVAL);
+-        ASSERT_ERROR(parse_birth_date("not-a-date", &tm), EINVAL);
+-        ASSERT_ERROR(parse_birth_date("2023-06-15T00:00:00", &tm), EINVAL);
+-}
+-
+ DEFINE_TEST_MAIN_WITH_INTRO(LOG_INFO, intro);
+diff --git a/src/test/test-user-record.c b/src/test/test-user-record.c
+index 480a3f33eb..c807ffe83a 100644
+--- a/src/test/test-user-record.c
++++ b/src/test/test-user-record.c
+@@ -96,15 +96,6 @@ TEST(self_changes) {
+              SD_JSON_BUILD_PAIR_OBJECT("privileged",
+                                     SD_JSON_BUILD_PAIR_UNSIGNED("notInHardCodedList", 99999)));
+         ASSERT_TRUE(user_record_self_changes_allowed(curr, new));
+-
+-        /* birthDate is NOT self-modifiable (admin-only) */
+-        USER(&curr,
+-             SD_JSON_BUILD_PAIR_STRING("userName", "test"),
+-             SD_JSON_BUILD_PAIR_STRING("birthDate", "1990-01-01"));
+-        USER(&new,
+-             SD_JSON_BUILD_PAIR_STRING("userName", "test"),
+-             SD_JSON_BUILD_PAIR_STRING("birthDate", "1990-06-15"));
+-        ASSERT_FALSE(user_record_self_changes_allowed(curr, new));
+ }
+ 
+ DEFINE_TEST_MAIN(LOG_INFO);
+-- 
+2.43.0
+

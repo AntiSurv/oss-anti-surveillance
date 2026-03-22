@@ -16,9 +16,9 @@ For live status, pull requests, and issues, see [TRACKER.md](TRACKER.md). For th
 
 Repository: [systemd/systemd](https://github.com/systemd/systemd)
 
-Role in the stack: systemd is currently relevant because userdb is being used as a possible storage layer for age-related user data. That makes it a high-impact normalization point inside core system infrastructure.
+Role in the stack: systemd is currently relevant because userdb is now an upstream merged storage layer for age-related user data. That makes it a high-impact normalization point inside core system infrastructure.
 
-Why it matters: if age-related attributes become part of the expected user record schema, downstream projects may begin assuming their presence.
+Why it matters: now that age-related attributes are part of the expected user record schema, downstream projects may begin assuming their presence. This increases the risk of propagation into downstream consumers and adjacent components.
 
 Current upstream references:
 

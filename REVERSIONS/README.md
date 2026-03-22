@@ -68,20 +68,14 @@ These categories are tracked in [TRACKER.md](../TRACKER.md) and explained struct
 
 ## Planned contents
 
-As the project grows, this directory should contain component-specific reversal notes. Each file should state:
+As the project grows, this directory contains component-specific reversal notes and downstream stripping strategies.
 
-- target component
-- relevant upstream change
-- current status
-- downstream stripping strategy
-- known breakage risks or dependency considerations
-- whether the note is conceptual, tested, or already deployed
-
-Where relevant, reversal notes should also state whether a clean downstream delta is enough or whether a more durable fork path may become necessary.
+Currently active reversal documentation:
+- [systemd: revert `birthDate` userdb merge](systemd/README.md)
 
 ## Current status
 
-This directory is currently a strategy placeholder. The project is still in the evidence-gathering and stack-mapping phase. As soon as specific removal notes are mature enough to publish, they should be added here and linked from [TRACKER.md](../TRACKER.md).
+The project tracks concrete removal strategies for merged components. As specific removal notes mature, they are added to this directory and linked from [TRACKER.md](../TRACKER.md).
 
 ## See also
 

@@ -111,11 +111,12 @@ The project is guided by the following principles.
 
 The highest current priorities are:
 
+- contain and document the downstream reversal path for the merged systemd user-record substrate
 - track and oppose standardization in portal and metadata layers
 - track and oppose normalization in core account and user record services
 - maintain a public record of downstream integration work
 - expand the legal map to track the spread of OS-layer and app-store-layer mandates across U.S. states
-- prepare downstream removal and package-level stripping strategies if upstream merges occur
+- prepare downstream removal and package-level stripping strategies for merged upstream components
 - keep the project precise, linkable, and easy to audit
 
 For the current list of tracked components, see [REPO-TARGETS.md](REPO-TARGETS.md). For the operational evidence index, see [TRACKER.md](TRACKER.md).
