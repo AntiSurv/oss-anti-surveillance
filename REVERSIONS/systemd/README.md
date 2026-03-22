@@ -12,6 +12,10 @@ This document explains the reversal path for the upstream systemd change that ad
 - **Merge Commit:** [`acb6624fa19ddd68f9433fb0838db119fe18c3ed`](https://github.com/systemd/systemd/commit/acb6624fa19ddd68f9433fb0838db119fe18c3ed)
 - **Context:** This merge introduced age-related fields into the core `systemd` userdb layer, crossing a defined project red line by formalizing a storage substrate for OS-level age signaling.
 
+## Closed upstream revert attempt
+
+A direct upstream revert attempt was submitted as PR #41179 and later closed. In the discussion, the merged `birthDate` field was defended by maintainers as an optional schema field rather than a policy engine. This matters because it makes the current upstream rationale explicit and clarifies the argument that critics of the field must now confront.
+
 ## Canonical upstream revert command
 
 Because the target is a merge commit (combining two parent commits into the mainline), the canonical command requires the `-m 1` flag. Parent 1 represents the pre-merge mainline.

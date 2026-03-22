@@ -24,6 +24,9 @@ Current upstream references:
 
 - [PR #40954](https://github.com/systemd/systemd/pull/40954)
 - [Issue #40974](https://github.com/systemd/systemd/issues/40974)
+- [PR #41179](https://github.com/systemd/systemd/pull/41179)
+
+A direct upstream revert attempt was later submitted as PR #41179 and closed. In that discussion, maintainers defended the merged `birthDate` field as optional schema standardization rather than a policy engine. This is relevant because it makes the current upstream posture explicit and clarifies the rationale that critics of the field must now address.
 
 #### xdg-desktop-portal
 
