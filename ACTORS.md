@@ -69,12 +69,14 @@ This matters because it confirms opposition is not merely political or activist,
 
 ## Related external research
 
-This project is aware of external investigations into the policy and lobbying ecosystem surrounding these legislative efforts. The TBOTE Project, for example, provides deep-dive research into lobbying records, funding structures, and actor relationships.
+This project is aware of external investigations into the policy and lobbying ecosystem surrounding these legislative efforts. The TBOTE Project is one such external research effort. It now provides not only a research repository, but also public findings and verification-oriented materials.
 
 - **TBOTE Project Home:** `https://tboteproject.com/`
 - **TBOTE Research Repository:** `https://tboteproject.com/git/hekate/attestation-findings`
+- **TBOTE Findings:** `https://tboteproject.com/findings/`
+- **TBOTE Verify:** `https://tboteproject.com/verify/`
 
-OSS Anti Surveillance may use such projects for discovery and contextual analysis, but will continue to anchor its own core dossier claims in direct legal, technical, and primary-source evidence, per the project's contribution standards.
+OSS Anti Surveillance may use such projects for discovery, contextual analysis, and research leads, but continues to anchor its own core dossier claims in direct legal, technical, and primary-source evidence, per the project's contribution standards.
 
 ## Research leads requiring further verification
 

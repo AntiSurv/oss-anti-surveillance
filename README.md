@@ -90,7 +90,7 @@ Start here, then use the following documents for specific purposes:
 - [LAWS.md](LAWS.md): legal and policy drivers
 - [STACK.md](STACK.md): technical architecture and propagation path
 - [REPO-TARGETS.md](REPO-TARGETS.md): component-by-component technical targets
-- [ACTORS.md](ACTORS.md): model-bill producers, advocacy ecosystem, and public-support map
+- [ACTORS.md](ACTORS.md): policy ecosystem, actor map, and related external research
 - [REVERSIONS/README.md](REVERSIONS/README.md): removal, stripping, and reversal strategy
 - [CONTRIBUTING.md](CONTRIBUTING.md): contribution standards and evidence rules
 
