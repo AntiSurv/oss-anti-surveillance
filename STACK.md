@@ -15,7 +15,7 @@ The currently visible implementation efforts are not monolithic. They represent 
 The key architectural layers and proposed vectors now include:
 
 - **Installer / Account-creation flow:** The point of initial data collection (e.g., `bsdinstall`, `Archinstall`, Ubuntu provisioning).
-- **Account metadata / Age storage:** The persistence layer for user age or date of birth (e.g., systemd userdb, AccountsService, or custom `/etc` files).
+- **Account metadata and client-library exposure:** The persistence layer and D-Bus retrieval/mutation service for user age or date of birth (e.g., systemd userdb, AccountsService with `libaccountsservice` exposure, or custom `/etc` files).
 - **Daemon / Helper layer:** Standalone services for managing and exposing age data (e.g., `ageverifyd`, `aged`).
 - **Portal / D-Bus / API:** The application-facing interface for querying age status (e.g., `xdg-desktop-portal`).
 - **Package manager / Repository integration:** Using the package manager to gate access to software based on age ratings (e.g., MidnightBSD `mport` proposal).
