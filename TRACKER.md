@@ -83,6 +83,7 @@ The tracker uses the following labels.
 | App-store | [Texas SB 2420](https://capitol.texas.gov/tlodocs/89R/billtext/pdf/SB02420E.pdf) | watchlist | Enacted but blocked; app-store model | Not currently a Linux OS implementation target |
 | App-store | [Florida SB 1722](https://www.flsenate.gov/Session/Bill/2026/1722) | watchlist | App-store accountability model | Not currently a Linux OS implementation target |
 | App-store | [Arizona HB 2920](https://www.azleg.gov/legtext/57leg/2R/bills/hb2920p.pdf) | watchlist | App-store accountability model | Not currently a Linux OS implementation target |
+| Cross-layer | [EU ePrivacy derogation / Chat Control interim extension file](https://www.europarl.europa.eu/news/nl/press-room/20260325IPR39207/child-sexual-abuse-online-voluntary-detection-measures-will-not-be-extended) | watchlist | Temporary legal basis for voluntary scanning is set to expire after 3 April 2026, but permanent Chat Control pressure remains active via the Council's Nov 2025 position | Continues to normalize message-scanning and inspection pressure even though the interim extension failed |
 
 ## Primary tracked sources
 
