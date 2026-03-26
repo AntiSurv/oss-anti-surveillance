@@ -44,9 +44,9 @@ Current upstream references:
 
 Repository: [accountsservice/accountsservice](https://gitlab.freedesktop.org/accountsservice/accountsservice)
 
-Role in the stack: AccountsService is relevant as an account metadata and D-Bus layer for user properties. It is a natural place for desktop-oriented account data to accumulate and be exposed.
+Role in the stack: AccountsService is relevant because MR !176 would turn it into a persistent birth-date storage and retrieval layer for desktop account data, with PolicyKit-gated D-Bus methods and `libaccountsservice` client-side support. It bridges AccountsService keyfile storage for non-homed users and JSON user-record data for homed / JSON-backed users.
 
-Why it matters: if age-related account properties are normalized here, downstream provisioning and desktop flows can inherit them more easily.
+Why it matters: This is not merely a passive schema extension. It makes AccountsService a standard desktop account-data service for age-related personal data, increasing the likelihood that settings panels, account UIs, and other desktop consumers will normalize birth-date handling as part of the broader age-verification architecture. Operationally, MR !176 is an advanced, near-merge implementation risk.
 
 Current upstream references:
 
