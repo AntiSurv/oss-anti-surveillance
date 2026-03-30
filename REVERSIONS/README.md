@@ -72,6 +72,7 @@ As the project grows, this directory contains component-specific reversal notes 
 
 Currently active reversal documentation:
 - [systemd: revert `birthDate` userdb merge](systemd/README.md)
+- [MidnightBSD: untested guide to remove the merged `aged` subsystem](midnightbsd/README.md)
 
 ## Current status
 

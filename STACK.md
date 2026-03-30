@@ -16,10 +16,10 @@ The key architectural layers and proposed vectors now include:
 
 - **Installer / Account-creation flow:** The point of initial data collection (e.g., `bsdinstall`, `Archinstall`, Ubuntu provisioning).
 - **Account metadata and client-library exposure:** The persistence layer and D-Bus retrieval/mutation service for user age or date of birth (e.g., systemd userdb, AccountsService with `libaccountsservice` exposure, or custom `/etc` files).
-- **Daemon / Helper layer:** Standalone services for managing and exposing age data (e.g., `ageverifyd`, `aged`).
+- **Daemon / Helper layer:** Standalone services for managing and exposing age data (e.g., `ageverifyd` on Linux, `aged` on MidnightBSD).
 - **Portal / D-Bus / API:** The application-facing interface for querying age status (e.g., `xdg-desktop-portal`).
 - **Package manager / Repository integration:** Using the package manager to gate access to software based on age ratings (e.g., MidnightBSD `mport` proposal).
-- **Filesystem / ACL / LSM enforcement:** Lower-level proposals for enforcing access control based on age, using mechanisms like extended attributes (xattrs), Access Control Lists (ACLs), or Linux Security Modules (LSMs).
+- **Filesystem / ACL / LSM enforcement:** Lower-level proposals for enforcing access control based on age, using mechanisms like extended attributes (xattrs), Access Control Lists (ACLs), or Linux Security Modules (LSMs). Post-merge commits to MidnightBSD's `aged` subsystem have also introduced logic for age-based group membership changes, demonstrating a concrete move in this enforcement-oriented direction.
 - **File-based attestation:** Proposals for using root-owned files on the filesystem to signal age brackets, as an alternative to a D-Bus service.
 
 This path matters because it shows the problem is not a single API but a system-wide architectural shift being explored across multiple components and operating systems.

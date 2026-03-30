@@ -60,7 +60,8 @@ The tracker uses the following labels.
 
 | Component | Repository | Item | Status | Why it matters | Downstream implications |
 | --- | --- | --- | --- | --- | --- |
-| MidnightBSD | [MidnightBSD Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit) | [Mailing list post](https://lists.freedesktop.org/archives/xdg/2026-March/014777.html) | active implementation | Explicit BSD-side implementation path for age/DOB storage, installer (`bsdinstall`) and user creation (`adduser`) integration, helper tools (`aged`, `agectl`), and package manager (`mport`) / ACL-based access control | Proves the surveillance architecture is spreading beyond the Linux ecosystem into other free Unix-like operating systems |
+| MidnightBSD `aged` | [MidnightBSD/src](https://github.com/MidnightBSD/src) | [PR #302](https://github.com/MidnightBSD/src/pull/302) | merged | Merged a full daemon/helper substrate for age/DOB storage and age-range signaling into the base OS, including `aged`, `agectl`, and rc startup integration. | Proves the surveillance architecture is not Linux-only; introduces a reusable OS-layer classification mechanism into a free Unix-like system. |
+| MidnightBSD `aged` | [MidnightBSD/src](https://github.com/MidnightBSD/src) | [`usr.sbin/aged` commits](https://github.com/MidnightBSD/src/commits/master/usr.sbin/aged) | active implementation | Post-merge commits add default adult assumptions for root/service accounts and age-based group membership logic, escalating from passive storage to active policy enforcement. | Expands the mechanism from signaling toward permission/group-policy effects, demonstrating architectural drift toward system-level access control. |
 
 ### Interface / discussion artifacts
 
@@ -102,7 +103,8 @@ The tracker uses the following labels.
 - [elementary/portals Issue #173](https://github.com/elementary/portals/issues/173)
 - [elementary/portals PR #180](https://github.com/elementary/portals/pull/180)
 - [outerheaven199X/ageverifyd](https://github.com/outerheaven199X/ageverifyd)
-- [MidnightBSD Age Verification Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit)
+- [MidnightBSD PR #302 (aged)](https://github.com/MidnightBSD/src/pull/302)
+- [MidnightBSD `usr.sbin/aged` commit history](https://github.com/MidnightBSD/src/commits/master/usr.sbin/aged)
 - [freedesktop.org `AgeVerification1` proposal thread](https://lists.freedesktop.org/archives/xdg/2026-March/014765.html)
 - [freedesktop.org Age Assurance Key Considerations thread](https://lists.freedesktop.org/archives/xdg/2026-March/014794.html)
 - [freedesktop.org File-based proposal thread](https://lists.freedesktop.org/archives/xdg/2026-March/014802.html)
