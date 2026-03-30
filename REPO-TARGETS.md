@@ -121,18 +121,19 @@ Current upstream references:
 
 ### BSD / Unix-like integration targets
 
-#### MidnightBSD age verification
+#### MidnightBSD age verification (`aged`)
 
-Repository: [MidnightBSD Project](https://www.midnightbsd.org/)
+Repository: [MidnightBSD/src](https://github.com/MidnightBSD/src)
 
-Role in the stack: This work represents a complete, parallel implementation of an OS-level age verification architecture for a BSD-based operating system. It includes installer (`bsdinstall`) and user management (`adduser`) integration, dedicated helper tools (`aged`, `agectl`), and enforcement paths via the package manager (`mport`) and ACLs.
+Role in the stack: This is a merged, base-system implementation of an OS-level age verification architecture for a BSD-based operating system. It includes a standalone daemon (`aged`), an admin tool (`agectl`), per-user age/DOB storage, a Unix socket for queries, and `rc` startup integration.
 
-Why it matters: This is critical evidence that the surveillance architecture is not a Linux-specific problem. It is a pattern spreading to other free Unix-like operating systems, using native system administration tools and concepts.
+Why it matters: This is critical evidence that the surveillance architecture is not a Linux-specific problem but a pattern spreading to other free Unix-like operating systems. Unlike discussion drafts, this is a merged upstream artifact. Post-merge commits have expanded the subsystem to include age-based group membership changes, showing a drift from passive signaling toward active policy enforcement.
 
 Current upstream references:
 
-- [Implementation Draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit)
-- [Mailing list discussion](https://lists.freedesktop.org/archives/xdg/2026-March/014777.html)
+- [PR #302](https://github.com/MidnightBSD/src/pull/302) (Initial merge)
+- [`usr.sbin/aged` commit history](https://github.com/MidnightBSD/src/commits/master/usr.sbin/aged) (Post-merge expansion)
+- [Historical design draft](https://docs.google.com/document/d/1_NKq0bpN1pOrMpHePuilJY7saXqXqhss6LwPTC6nSto/edit)
 
 ## Watchlist concept
 
